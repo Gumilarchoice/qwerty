@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "functions": {
+    "api/app.js": { "maxDuration": 60 }
+  },
+  "rewrites": [
+    { "source": "/api/config", "destination": "/api/app?action=config" },
+    { "source": "/api/oauth-start", "destination": "/api/app?action=oauth-start" },
+    { "source": "/api/oauth-callback", "destination": "/api/app?action=oauth-callback" },
+    { "source": "/api/upload-session", "destination": "/api/app?action=upload-session" },
+    { "source": "/api/mcp", "destination": "/api/app?action=mcp" },
+    { "source": "/connect", "destination": "/connect.html" },
+    { "source": "/", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "no-referrer" },
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
+  ]
+}
